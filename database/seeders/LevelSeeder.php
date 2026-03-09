@@ -17,5 +17,7 @@ class LevelSeeder extends Seeder
         ['level_id'=>2, 'level_kode'=>'MNG', 'level_nama'=>'Manager'],
         ['level_id'=>3, 'level_kode'=>'STF', 'level_nama'=>'Staff/Kasir'],
     ]);
-    }
+    // Reset sequence to avoid duplicate key errors
+    DB::statement("SELECT setval('m_level_level_id_seq', (SELECT COALESCE(MAX(level_id), 1) FROM m_level))");
+}
 }

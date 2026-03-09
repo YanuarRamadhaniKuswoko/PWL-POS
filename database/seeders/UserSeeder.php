@@ -31,6 +31,8 @@ public function run(): void {
             'password' => Hash::make('12345'),
         ],
     ]);
+    // Reset sequence to avoid duplicate key errors
+    DB::statement("SELECT setval('m_user_user_id_seq', (SELECT COALESCE(MAX(user_id), 1) FROM m_user))");
 }
 
 }

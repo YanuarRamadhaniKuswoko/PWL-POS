@@ -19,6 +19,8 @@ class KategoriSeeder extends Seeder
         ['kategori_id'=>4,'kategori_kode'=>'ELK','kategori_nama'=>'Elektronik'],
         ['kategori_id'=>5,'kategori_kode'=>'FAS','kategori_nama'=>'Fashion'],
     ]);
+    // Reset sequence to avoid duplicate key errors
+    DB::statement("SELECT setval('m_kategori_kategori_id_seq', (SELECT COALESCE(MAX(kategori_id), 1) FROM m_kategori))");
 }
 
 }

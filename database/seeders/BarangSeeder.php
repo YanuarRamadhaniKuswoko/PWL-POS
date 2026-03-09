@@ -47,5 +47,7 @@ class BarangSeeder extends Seeder
         ['barang_id'=>15,'kategori_id'=>3,'barang_kode'=>'BRG015',
          'barang_nama'=>'Plester Hansaplast','harga_beli'=>4000,'harga_jual'=>6500],
     ]);
+    // Reset sequence to avoid duplicate key errors
+    DB::statement("SELECT setval('m_barang_barang_id_seq', (SELECT COALESCE(MAX(barang_id), 1) FROM m_barang))");
 }
 }

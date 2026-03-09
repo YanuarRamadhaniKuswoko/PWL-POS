@@ -12,7 +12,6 @@ class PenjualanSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void {
-    for ($i = 1; $i <= 10; $i++) {
         DB::table('t_penjualan')->insert([
             'penjualan_id'      => $i,
             'user_id'           => 3,
@@ -31,6 +30,8 @@ class PenjualanSeeder extends Seeder
             ]);
         }
     }
+    // Reset sequences to avoid duplicate key errors
+        DB::statement("SELECT setval('t_penjualan_penjualan_id_seq', (SELECT COALESCE(MAX(penjualan_id), 1) FROM t_penjualan))");
 }
 
 }
